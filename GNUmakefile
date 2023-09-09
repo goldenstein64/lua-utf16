@@ -18,16 +18,16 @@ T_OBJ= $(T).o
 $(T): $(T_OUT)
 
 $(T_OUT): $(T_OBJ)
-	$(CC) -o $@ $(LDFLAGS) $(T_OBJ) $(LIBS)
+	$(CC) $(LDFLAGS) $(T_OBJ) $(LIBS) -o $@
 
 clean:
 	$(RM) $(T_OUT) $(T_OBJ)
 
 ios macos macosx:
-	$(MAKE) $(T) LIBS="" LDFLAGS="$(LDFLAGS) -undefined dynamic_lookup"
+	$(MAKE) $(T_OUT) LIBS="" LDFLAGS="$(LDFLAGS) -undefined dynamic_lookup"
 
 mingw:
-	$(MAKE) "CFLAGS=$(CFLAGS) -DLUA_BUILD_AS_DLL" "T_OUT=$(T).dll"
+	$(MAKE) $(T_OUT) "CFLAGS=$(CFLAGS) -DLUA_BUILD_AS_DLL" "T_OUT=$(T).dll"
     
 .c.o:
 	$(CC) $(CFLAGS) -c $*.c
