@@ -38,7 +38,7 @@ At the command prompt, in the source directory, execute `make -f GNUmakefile mac
 
 At the command prompt, in the source directory, execute `make -f GNUmakefile`. The variables LUA_CFLAGS and LUA_LIBS can be set either in GNUmakefile or at the command line, for example with `make -f GNUmakefile LUA_CFLAGS=-I/opt/local/include LUA_LIBS=-L/opt/local/lib -llua54`. The resulting `utf16.so` must be manually moved to the target directory.
 
-## With LuaRocks
+### With LuaRocks
 
 At the command prompt, in the source directory, execute `luarocks make ./lua-utf16-dev-1.rockspec`. A `utf16.{dll,so}` should be compiled in the nearest LuaRocks tree.
 
