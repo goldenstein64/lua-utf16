@@ -1,4 +1,4 @@
-package = "lua-utf16"
+package = "utf16"
 version = "dev-1"
 source = {
    url = "git+https://github.com/vtudorache/lua-utf16.git"
