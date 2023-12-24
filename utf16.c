@@ -287,7 +287,7 @@ static int utf16_offset(lua_State *L)
     return 1;
 }
 
-LUAMOD_API int luaopen_utf16(lua_State *L)
+LUAMOD_API; int luaopen_utf16(lua_State *L)
 {
     lua_newtable(L);
     lua_pushcfunction(L, utf16_char);

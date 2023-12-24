@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# LuaRocks files
+/luarocks.bat
+/lua.bat
+/lua_modules
+/.luarocks
