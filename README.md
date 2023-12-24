@@ -2,8 +2,8 @@
 
 ## Description
 
-This library provides minimal support for the UTF-16 encoding. Operations that query the meaning of a character, such as character classification, are outside its scope. Since strings in Lua can have embedded zeros, the library uses the default Lua string type to hold the UTF-16 data. The encoding of a particular string is the user's responsibility. 
-Unless specifically mentioned, all functions expect a byte (and not UTF-16 code unit) position as an argument. They assume that the given position is either the start of a code point (a self-represented UTF-16 character or a high UTF-16 surrogate) or one plus the length (in bytes) of the subject string. Negative positions (in bytes) count from the end of the string. 
+This library provides minimal support for the UTF-16 encoding. Operations that query the meaning of a character, such as character classification, are outside its scope. Since strings in Lua can have embedded zeros, the library uses the default Lua string type to hold the UTF-16 data. The encoding of a particular string is the user's responsibility.
+Unless specifically mentioned, all functions expect a byte (and not UTF-16 code unit) position as an argument. They assume that the given position is either the start of a code point (a self-represented UTF-16 character or a high UTF-16 surrogate) or one plus the length (in bytes) of the subject string. Negative positions (in bytes) count from the end of the string.
 
 ### utf16.char(···)
 Gets zero or more integers, converts each one to its corresponding UTF-16 code units and returns a string with the concatenation of all these code units.
@@ -22,7 +22,7 @@ Returns the position (in bytes) where the encoding of the `i`-th code point of `
 
 ## Installation
 
-### On Microsoft Windows with Microsoft Visual Studio 
+### On Microsoft Windows with Microsoft Visual Studio
 
 Open a Visual Studio Command Prompt (choosing the same platform as the one used when compiling Lua) in the source directory and execute `nmake`. The variables `LUA_INCLUDE`, `LUA_LIBNAME` and `LUA_LIBPATH` can be set either in `Makefile` or at the command line, for example with `nmake LUA_INCLUDE=C:\Lua54\include LUA_LIBNAME=lua54.lib LUA_LIBPATH=C:\Lua54\lib`. Lua must have been compiled as DLL (to allow using modules). The resulting `utf16.dll` must be manually moved to the target directory.
 
@@ -38,3 +38,8 @@ At the command prompt, in the source directory, execute `make -f GNUmakefile mac
 
 At the command prompt, in the source directory, execute `make -f GNUmakefile`. The variables LUA_CFLAGS and LUA_LIBS can be set either in GNUmakefile or at the command line, for example with `make -f GNUmakefile LUA_CFLAGS=-I/opt/local/include LUA_LIBS=-L/opt/local/lib -llua54`. The resulting `utf16.so` must be manually moved to the target directory.
 
+## With LuaRocks
+
+At the command prompt, in the source directory, execute `luarocks make ./lua-utf16-dev-1.rockspec`. A `utf16.{dll,so}` should be compiled in the nearest LuaRocks tree.
+
+This works with MinGW on Windows and Debian WSL2.
