@@ -1,5 +1,3 @@
-#define LUA_LIB
-
 #if defined(_WIN32)
 
 #include <windows.h>
@@ -99,15 +97,15 @@ static int utf16_len(lua_State *L)
     size_t size;
     const UINT16 *s = (const UINT16 *)luaL_checklstring(L, 1, &size);
     i = offset(luaL_optinteger(L, 2, 1), size);
-    luaL_argcheck(L, 0 <= i && i < (lua_Integer)size, 2, 
+    luaL_argcheck(L, 0 <= i && i < (lua_Integer)size, 2,
         "initial position out of range");
     j = offset(luaL_optinteger(L, 3, -1), size);
-    luaL_argcheck(L, 0 <= j && j < (lua_Integer)size, 3, 
+    luaL_argcheck(L, 0 <= j && j < (lua_Integer)size, 3,
         "final position out of range");
-    if (i % sizeof(UINT16)) return luaL_error(L, 
+    if (i % sizeof(UINT16)) return luaL_error(L,
         "initial position not aligned to UTF-16 unit");
     /* Convert the starting byte offset to the UTF-16 unit offset */
-    i /= sizeof(UINT16); 
+    i /= sizeof(UINT16);
     /* Convert the ending byte offset to the UTF-16 unit offset */
     j /= sizeof(UINT16);
     while (i <= j) {
@@ -135,16 +133,16 @@ static int utf16_codepoint(lua_State *L)
     size_t size;
     const UINT16 *s = (const UINT16 *)luaL_checklstring(L, 1, &size);
     i = offset(luaL_optinteger(L, 2, 1), size);
-    luaL_argcheck(L, 0 <= i && i < (lua_Integer)size, 2, 
+    luaL_argcheck(L, 0 <= i && i < (lua_Integer)size, 2,
         "initial position out of range");
     /* Use i + 1 (to get byte position, not offset) as default for arg #2. */
     j = offset(luaL_optinteger(L, 3, i + 1), size);
-    luaL_argcheck(L, 0 <= j && j < (lua_Integer)size, 3, 
+    luaL_argcheck(L, 0 <= j && j < (lua_Integer)size, 3,
         "final position out of range");
-    if (i % sizeof(UINT16)) return luaL_error(L, 
+    if (i % sizeof(UINT16)) return luaL_error(L,
         "initial position not aligned to UTF-16 unit");
     /* Convert the starting byte offset to the UTF-16 unit offset */
-    i /= sizeof(UINT16); 
+    i /= sizeof(UINT16);
     /* Convert the ending byte offset to the UTF-16 unit offset */
     j /= sizeof(UINT16);
     if (i <= j) {
@@ -234,8 +232,8 @@ static int utf16_codes(lua_State*L)
 }
 
 /*
-** utf16.offset(s, i, [pos]) -> position (as bytes) where the i-th code point 
-** counting from pos begins; an i of 0 means the code point at pos. If the 
+** utf16.offset(s, i, [pos]) -> position (as bytes) where the i-th code point
+** counting from pos begins; an i of 0 means the code point at pos. If the
 ** specified character is neither in the subject nor right after its end, the
 ** function returns nil.
 */
@@ -248,9 +246,9 @@ static int utf16_offset(lua_State *L)
     pos = (i >= 0) ? 1 : (lua_Integer)(size + 1);
     pos = offset(luaL_optinteger(L, 3, pos), size);
     /* pos should be [0, size] */
-    luaL_argcheck(L, 0 <= pos && pos <= (lua_Integer)size, 3, 
+    luaL_argcheck(L, 0 <= pos && pos <= (lua_Integer)size, 3,
         "position out of range");
-    if (pos % sizeof(UINT16)) return luaL_error(L, 
+    if (pos % sizeof(UINT16)) return luaL_error(L,
         "position not aligned to UTF-16 unit");
     /* n gets the number of UINT16 units. */
     n = (lua_Integer)(size / sizeof(UINT16));
@@ -265,7 +263,7 @@ static int utf16_offset(lua_State *L)
             "position starting a low UTF-16 surrogate");
         if (i > 0) {
             while (pos < n) {
-                if (!SUR2TO3(s[pos])) i--; 
+                if (!SUR2TO3(s[pos])) i--;
                 if (i == 0) break;
                 pos++;
             }
@@ -273,12 +271,12 @@ static int utf16_offset(lua_State *L)
         else {
             while (pos > 0) {
                 pos--;
-                if (!SUR2TO3(s[pos])) i++; 
+                if (!SUR2TO3(s[pos])) i++;
                 if (i == 0) break;
             }
         }
     }
-    /* 
+    /*
     ** When a code point position is found, i is 0 (no more search). Return
     ** pos converted to a byte position starting with 1, or nil.
     */
@@ -287,7 +285,7 @@ static int utf16_offset(lua_State *L)
     return 1;
 }
 
-LUAMOD_API; int luaopen_utf16(lua_State *L)
+int luaopen_utf16(lua_State *L)
 {
     lua_newtable(L);
     lua_pushcfunction(L, utf16_char);
