@@ -4,7 +4,7 @@ source = {
    url = "git+https://github.com/vtudorache/lua-utf16.git"
 }
 description = {
-   summary = "A UTF-16 support module for Lua",
+   summary = "Minimal support for the UTF-16 encoding for Lua.",
    detailed = [[
       This library provides minimal support for the UTF-16 encoding. Operations
       that query the meaning of a character, such as character classification,
