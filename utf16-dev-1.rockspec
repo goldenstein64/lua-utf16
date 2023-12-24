@@ -1,11 +1,13 @@
 package = "utf16"
 version = "dev-1"
 source = {
-   url = "git+https://github.com/vtudorache/lua-utf16.git"
+   url = "git+https://github.com/goldenstein64/lua-utf16.git"
 }
 description = {
    summary = "Minimal support for the UTF-16 encoding for Lua.",
    detailed = [[
+      Forked from https://github.com/vtudorache/lua-utf16
+
       This library provides minimal support for the UTF-16 encoding. Operations
       that query the meaning of a character, such as character classification,
       are outside its scope. Since strings in Lua can have embedded zeros, the
@@ -19,7 +21,7 @@ description = {
       of the subject string. Negative positions (in bytes) count from the end
       of the string.
    ]],
-   homepage = "https://github.com/vtudorache/lua-utf16",
+   homepage = "https://github.com/goldenstein64/lua-utf16",
    license = "MIT"
 }
 dependencies = {
