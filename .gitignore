@@ -54,5 +54,7 @@ dkms.conf
 # LuaRocks files
 /luarocks.bat
 /lua.bat
+/luarocks
+/lua
 /lua_modules
 /.luarocks
