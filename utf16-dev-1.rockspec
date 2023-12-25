@@ -13,13 +13,6 @@ description = {
       are outside its scope. Since strings in Lua can have embedded zeros, the
       library uses the default Lua string type to hold the UTF-16 data. The
       encoding of a particular string is the user's responsibility.
-
-      Unless specifically mentioned, all functions expect a byte (and not
-      UTF-16 code unit) position as an argument. They assume that the given
-      position is either the start of a code point (a self-represented UTF-16
-      character or a high UTF-16 surrogate) or one plus the length (in bytes)
-      of the subject string. Negative positions (in bytes) count from the end
-      of the string.
    ]],
    homepage = "https://github.com/goldenstein64/lua-utf16",
    license = "MIT"
