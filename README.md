@@ -12,7 +12,7 @@ Gets zero or more integers, converts each one to its corresponding UTF-16 code u
 Returns values so that the construction `for p, c in utf8.codes(s) do body end` will iterate over all code points in string s, with p being the position (in bytes) and c the code point of each character. It raises an error if it meets any invalid UTF-16 sequence.
 
 ### utf16.codepoint(s [, i [, j]])
-Returns the code points (as integers) from all UTF-16 characters in s that start between byte position i and j (both included). The default for i is 1 and for j is i. It raises an error if it meets any invalid UF-16 sequence.
+Returns the code points (as integers) from all UTF-16 characters in s that start between byte position i and j (both included). The default for i is 1 and for j is i. It raises an error if it meets any invalid UTF-16 sequence.
 
 ### utf16.len(s [, i [, j]])
 Returns the number of UTF-8 characters in string s that start between positions i and j (both inclusive). The default for i is 1 and for j is -1. If it finds any invalid byte sequence, returns a false value plus the position of the first invalid byte.
